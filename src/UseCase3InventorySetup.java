@@ -1,28 +1,28 @@
 import java.util.HashMap;
 
-class RoomInventory {
+class HotelStock {
 
-    private HashMap<String, Integer> inventory;
+    private HashMap<String, Integer> stockData;
 
-    public RoomInventory() {
-        inventory = new HashMap<>();
-        inventory.put("Single Room", 5);
-        inventory.put("Double Room", 3);
-        inventory.put("Suite Room", 2);
+    public HotelStock() {
+        stockData = new HashMap<>();
+        stockData.put("Single Room", 5);
+        stockData.put("Double Room", 3);
+        stockData.put("Suite Room", 2);
     }
 
-    public int getAvailability(String roomType) {
-        return inventory.getOrDefault(roomType, 0);
+    public int checkAvailability(String roomType) {
+        return stockData.getOrDefault(roomType, 0);
     }
 
-    public void updateAvailability(String roomType, int count) {
-        inventory.put(roomType, count);
+    public void updateStock(String roomType, int count) {
+        stockData.put(roomType, count);
     }
 
-    public void displayInventory() {
+    public void showStock() {
         System.out.println("\n--- Current Room Inventory ---");
-        for (String roomType : inventory.keySet()) {
-            System.out.println(roomType + " : " + inventory.get(roomType) + " available");
+        for (String roomType : stockData.keySet()) {
+            System.out.println(roomType + " : " + stockData.get(roomType) + " available");
         }
     }
 }
@@ -36,16 +36,16 @@ public class UseCase3InventorySetup {
         System.out.println("      Hotel Booking System v3.1       ");
         System.out.println("======================================");
 
-        RoomInventory inventory = new RoomInventory();
+        HotelStock hotelStock = new HotelStock();
 
-        inventory.displayInventory();
+        hotelStock.showStock();
 
         System.out.println("\nChecking availability for Double Room:");
-        System.out.println("Available: " + inventory.getAvailability("Double Room"));
+        System.out.println("Available: " + hotelStock.checkAvailability("Double Room"));
 
         System.out.println("\nUpdating availability for Double Room...");
-        inventory.updateAvailability("Double Room", 4);
+        hotelStock.updateStock("Double Room", 4);
 
-        inventory.displayInventory();
+        hotelStock.showStock();
     }
 }
